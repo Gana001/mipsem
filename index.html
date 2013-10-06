@@ -18,6 +18,29 @@
 </script>
 <script src="./simulator.js" type="text/javascript">
 </script>
+<script src="./utils.js" type="text/javascript"> </script>
+<!-- <script src="./deps/Blob.js" type="text/javascript"></script>
+<script src="./deps/FileSaver.js" type="text/javascript"></script> -->
+<script type="text/javascript">
+    // Event Wiring -  Here various elements (file fields, text fields, etc.) 
+    // are connected to their respective  events (click, mouse over,etc.) to
+    // perform various actions
+    
+    $(function(){
+
+        $('#doSim').on("click",function(e){
+            var fileField = $('input#file');
+            var parse = utils.parser; 
+            var fileAsString = utils.getFileFieldAsString(fileField, parse);
+
+        });
+    }); 
+
+
+
+</script>
+
+
 </head>
 <body>
 <div class="container">
@@ -33,6 +56,13 @@
         </div>
     </div>
     <div class="row">
+        </br>
+        <div class="col-md-8 col-md-offset-2">
+            <button type="button" class="btn btn-primary btn-lg" id="doSim">Perform Simulation</button>
+        </div>
+    </div>
+    <div class="row">
+        </br>
         <div class="col-md-8 col-md-offset-2"><label for="result">Result:</label><textarea id="result" name="result" class="form-control"></textarea></div>
     </div>
     <div class="row">
