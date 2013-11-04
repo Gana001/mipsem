@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="generator" content=
-"HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
 <meta charset="UTF-8">
 <meta name="viewport" content=
 "width=device-width, initial-scale=1.0">
@@ -14,7 +12,8 @@
 </script>
 <script src="./deps/underscore-min.js" type="text/javascript">
 </script>
-<script src="./deps/bootstrap.min.js" type="text/javascript">
+<script src="./deps/bootstrap.min.js" type="text/javascript"></script>
+<script src="./deps/underscore.string.min.js" type="text/javascript">
 </script>
 <script src="./simulator.js" type="text/javascript">
 </script>
@@ -25,15 +24,23 @@
     // Event Wiring -  Here various elements (file fields, text fields, etc.) 
     // are connected to their respective  events (click, mouse over,etc.) to
     // perform various actions
-    
+    var sim = new MipSim();
     $(function(){
 
         $('#doSim').on("click",function(e){
             var fileField = $('input#file');
-            var parse = utils.parser; 
-            var fileAsString = utils.getFileFieldAsString(fileField, parse);
-
+            utils.getFileFieldAsString(fileField);
+            
         });
+        
+        // Catch the event that signals the input file
+        // has been successfully read.
+        $(document).on('inputLoaded', function(e, loadedString){
+                
+                var parsed = utils.parser(loadedString); 
+                
+                console.log(parsed);
+            });
     }); 
 
 
